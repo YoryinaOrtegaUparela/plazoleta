@@ -3,13 +3,13 @@ package com.pragma.powerup.plazoleta.domain.model;
 public class Restaurante {
     private Long id;
     private String nombre;
-    private Long nit;
+    private String nit;
     private String direccion;
     private Long idPropietario;
     private String telefono;
     private String urlLogo;
 
-    public Restaurante(Long id, String nombre, Long nit, String direccion, Long idPropietario, String telefono, String urlLogo) {
+    public Restaurante(Long id, String nombre, String nit, String direccion, Long idPropietario, String telefono, String urlLogo) {
         this.id = id;
         this.nombre = nombre;
         this.nit = nit;
@@ -35,14 +35,13 @@ public class Restaurante {
         this.nombre = nombre;
     }
 
-    public Long getNit() {
+    public String getNit() {
         return nit;
     }
 
-    public void setNit(Long nit) {
+    public void setNit(String nit) {
         this.nit = nit;
     }
-
     public String getDireccion() {
         return direccion;
     }

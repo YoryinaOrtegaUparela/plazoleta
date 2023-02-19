@@ -15,7 +15,7 @@ public class RestauranteEntity {
     private String nombre;
 
     @Column(length = 50)
-    private Long nit;
+    private String nit;
 
     @Column(length = 50)
     private String direccion;
@@ -48,11 +48,11 @@ public class RestauranteEntity {
         this.nombre = nombre;
     }
 
-    public Long getNit() {
+    public String getNit() {
         return nit;
     }
 
-    public void setNit(Long nit) {
+    public void setNit(String nit) {
         this.nit = nit;
     }
 

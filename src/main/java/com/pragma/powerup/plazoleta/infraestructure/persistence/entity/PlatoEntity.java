@@ -1,25 +1,38 @@
-package com.pragma.powerup.plazoleta.domain.model;
+package com.pragma.powerup.plazoleta.infraestructure.persistence.entity;
 
-public class Plato {
+import javax.persistence.*;
 
+@Entity
+@Table(name = "platos")
+public class PlatoEntity {
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(nullable = false)
     private Long id;
+
+    @Column(length = 50)
     private String nombre;
+
+    @Column(nullable = false)
     private Long idCategoria;
+
+    @Column(length = 50)
     private String descripcion;
+
+    @Column(length = 50)
     private Long precio;
+
+    @Column(nullable = false)
     private Long idRestaurante;
+
+    @Column(length = 50)
     private String urlImagen;
+
+    @Column(length = 50)
     private boolean activo;
 
-    public Plato(Long id, String nombre, Long idCategoria, String descripcion, Long precio, Long idRestaurante, String urlImagen) {
-        this.id = id;
-        this.nombre = nombre;
-        this.idCategoria = idCategoria;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.idRestaurante = idRestaurante;
-        this.urlImagen = urlImagen;
-        this.activo = true;
+    public PlatoEntity() {
     }
 
     public Long getId() {

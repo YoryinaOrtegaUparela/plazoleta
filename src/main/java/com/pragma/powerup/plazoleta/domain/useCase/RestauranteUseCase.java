@@ -16,4 +16,10 @@ public class RestauranteUseCase implements RestauranteServicePort {
     public void crearRestaurante(Restaurante restauranteNuevo) {
         restaurantePersistencePort.guardarRestaurante(restauranteNuevo);
     }
+
+    @Override
+    public boolean validarSiExisteRestaurante(Long idRestaurante) {
+
+        return false;
+    }
 }
