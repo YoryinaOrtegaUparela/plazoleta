@@ -1,17 +1,22 @@
+#Puerto de arranque de la app
 server:
   port: 8082
 
+#Configuracion de la BD
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/plazoleta
     username: root
+    password: Dragonazul645
 
+#Config para Funcionar clientes Feing
   config:
     import: "optional:configserver:"
-
+#Configuracion de JPA
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+#Datos Generales del microservicio
 appDescription: "Microservice Plazoleta de comidas"
 appVersion: "1.0.0"
