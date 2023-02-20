@@ -2,7 +2,7 @@ package com.pragma.powerup.plazoleta.infraestructure.persistence.adapter;
 
 import com.pragma.powerup.plazoleta.domain.model.Restaurante;
 import com.pragma.powerup.plazoleta.domain.spi.RestaurantePersistencePort;
-import com.pragma.powerup.plazoleta.infraestructure.exception.NoDataFoundException;
+import com.pragma.powerup.plazoleta.domain.exception.PlazoletaNoDataFoundException;
 import com.pragma.powerup.plazoleta.infraestructure.persistence.entity.RestauranteEntity;
 import com.pragma.powerup.plazoleta.infraestructure.persistence.mapper.RestauranteEntityMapper;
 import com.pragma.powerup.plazoleta.infraestructure.persistence.repository.RestauranteRepository;
@@ -20,19 +20,22 @@ public class RestaurantePersistenceAdapter implements RestaurantePersistencePort
     }
 
     @Override
-    public void guardarRestaurante(Restaurante restauranteNuevo) {
+    public Restaurante guardarRestaurante(Restaurante restauranteNuevo) {
         RestauranteEntity restauranteEntity = restauranteEntityMapper.restauranteToRestauranteEntity(restauranteNuevo);
         restauranteRepository.save(restauranteEntity);
+        return restauranteNuevo;
     }
 
     @Override
-    public boolean validarSiRestauranteExiste(Long idRestaurante) throws NoDataFoundException{
+    public boolean validarSiRestauranteExiste(Long idRestaurante) throws PlazoletaNoDataFoundException {
 
         Optional<RestauranteEntity> restaurante = restauranteRepository.findById(idRestaurante);
         if (restaurante.isPresent()) {
             return true;
+        }else{
+            return false;
         }
-        throw new NoDataFoundException("El idRestaurante " + idRestaurante + " no existe.");
+
 
 
     }

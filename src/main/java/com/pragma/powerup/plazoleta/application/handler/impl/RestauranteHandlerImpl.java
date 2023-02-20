@@ -1,6 +1,7 @@
 package com.pragma.powerup.plazoleta.application.handler.impl;
 
-import com.pragma.powerup.plazoleta.application.dto.RestauranteRequestDto;
+import com.pragma.powerup.plazoleta.application.dto.request.RestauranteRequestDto;
+import com.pragma.powerup.plazoleta.application.dto.response.RestauranteResponseDto;
 import com.pragma.powerup.plazoleta.application.handler.RestauranteHandler;
 import com.pragma.powerup.plazoleta.application.mapper.RestauranteMapper;
 import com.pragma.powerup.plazoleta.domain.api.RestauranteServicePort;
@@ -19,8 +20,10 @@ public class RestauranteHandlerImpl implements RestauranteHandler {
     }
 
     @Override
-    public void crearRestaurante(RestauranteRequestDto restauranteRequestDto) {
+    public RestauranteResponseDto crearRestaurante(RestauranteRequestDto restauranteRequestDto) {
         Restaurante restaurante = restauranteMapper.restauranteDtoToRestaurante(restauranteRequestDto);
-        restauranteServicePort.crearRestaurante(restaurante);
+        Restaurante restauranteCreado = restauranteServicePort.crearRestaurante(restaurante);
+        RestauranteResponseDto restauranteResponseDto = restauranteMapper.restauranteToRestauranteResponseDto(restauranteCreado);
+        return restauranteResponseDto;
     }
 }

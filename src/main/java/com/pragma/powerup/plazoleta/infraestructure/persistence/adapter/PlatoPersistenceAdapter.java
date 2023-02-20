@@ -19,9 +19,12 @@ public class PlatoPersistenceAdapter implements PlatoPersistencePort {
     }
 
     @Override
-    public void guardarPlato(Plato plato) {
+    public Plato guardarPlato(Plato plato) {
         PlatoEntity platoEntity = platoEntityMapper.platoToPlatoEntityMapper(plato);
-        platoRepository.save(platoEntity);
+        PlatoEntity platoGuardado = platoRepository.save(platoEntity);
+
+        plato.setId(platoGuardado.getId());
+        return plato;
     }
 
     @Override

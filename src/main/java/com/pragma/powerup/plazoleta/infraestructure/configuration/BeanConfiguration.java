@@ -51,7 +51,7 @@ public class BeanConfiguration {
 
     @Bean
     public PlatoServicePort platoServicePort() {
-        return new PlatoUseCase(platoPersistencePort());
+        return new PlatoUseCase(platoPersistencePort(),restauranteServicePort(), categoriaServicePort());
     }
 
     @Bean
