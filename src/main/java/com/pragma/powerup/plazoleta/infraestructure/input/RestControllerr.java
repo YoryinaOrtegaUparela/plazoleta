@@ -5,6 +5,7 @@ import com.pragma.powerup.plazoleta.application.dto.PlatoRequestDto;
 import com.pragma.powerup.plazoleta.application.dto.RestauranteRequestDto;
 import com.pragma.powerup.plazoleta.application.handler.PlatoHandler;
 import com.pragma.powerup.plazoleta.application.handler.RestauranteHandler;
+import com.pragma.powerup.plazoleta.domain.exception.OperationNotAllowedException;
 import com.pragma.powerup.plazoleta.infraestructure.exception.ValidationRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,6 +51,18 @@ public class RestControllerr {
     @ExceptionHandler(ValidationRequestException.class)
     public ResponseEntity<Map<String, String>> handleNoValidRolException(
             ValidationRequestException validationRequestException) {
+
+        Map<String, String> stringStringMap = new HashMap<String, String>();
+        stringStringMap.put(ERROR, validationRequestException.getMessage());
+        stringStringMap.put(STATUS_CODE, HttpStatus.NOT_FOUND.getReasonPhrase());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(stringStringMap);
+    }
+
+    @ExceptionHandler(OperationNotAllowedException.class)
+    public ResponseEntity<Map<String, String>> handleOperationNotAllowedException(
+            OperationNotAllowedException validationRequestException) {
 
         Map<String, String> stringStringMap = new HashMap<String, String>();
         stringStringMap.put(ERROR, validationRequestException.getMessage());

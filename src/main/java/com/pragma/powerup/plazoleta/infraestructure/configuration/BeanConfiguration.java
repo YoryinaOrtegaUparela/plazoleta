@@ -6,6 +6,7 @@ import com.pragma.powerup.plazoleta.domain.api.RestauranteServicePort;
 import com.pragma.powerup.plazoleta.domain.spi.CategoriaPersistencePort;
 import com.pragma.powerup.plazoleta.domain.spi.PlatoPersistencePort;
 import com.pragma.powerup.plazoleta.domain.spi.RestaurantePersistencePort;
+import com.pragma.powerup.plazoleta.domain.spi.UsuarioRemotePort;
 import com.pragma.powerup.plazoleta.domain.useCase.CategoriaUseCase;
 import com.pragma.powerup.plazoleta.domain.useCase.PlatoUseCase;
 import com.pragma.powerup.plazoleta.domain.useCase.RestauranteUseCase;
@@ -18,6 +19,8 @@ import com.pragma.powerup.plazoleta.infraestructure.persistence.mapper.Restauran
 import com.pragma.powerup.plazoleta.infraestructure.persistence.repository.CategoriaRepository;
 import com.pragma.powerup.plazoleta.infraestructure.persistence.repository.PlatoRepository;
 import com.pragma.powerup.plazoleta.infraestructure.persistence.repository.RestauranteRepository;
+import com.pragma.powerup.plazoleta.infraestructure.remote.UsuarioRemoteAdapter;
+import com.pragma.powerup.plazoleta.infraestructure.remote.feing.UsuarioRemoteClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +37,9 @@ public class BeanConfiguration {
     private final CategoriaRepository categoriaRepository;
     private final CategoriaEntityMapper categoriaEntityMapper;
 
+    private final  UsuarioRemoteClient usuarioRemoteClient;
+
+
     @Bean
     public RestaurantePersistencePort restaurantePersistencePort() {
         return new RestaurantePersistenceAdapter(restauranteEntityMapper, restauranteRepository);
@@ -41,7 +47,7 @@ public class BeanConfiguration {
 
     @Bean
     public RestauranteServicePort restauranteServicePort() {
-        return new RestauranteUseCase(restaurantePersistencePort());
+        return new RestauranteUseCase(restaurantePersistencePort(),usuarioRemotePort());
     }
 
     @Bean
@@ -62,5 +68,10 @@ public class BeanConfiguration {
     @Bean
     public CategoriaServicePort categoriaServicePort() {
         return new CategoriaUseCase(categoriaPersistencePort());
+    }
+
+    @Bean
+    public UsuarioRemotePort usuarioRemotePort() {
+        return new UsuarioRemoteAdapter(usuarioRemoteClient);
     }
 }
