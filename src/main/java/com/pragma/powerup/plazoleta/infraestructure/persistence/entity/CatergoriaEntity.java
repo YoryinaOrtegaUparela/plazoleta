@@ -3,7 +3,7 @@ package com.pragma.powerup.plazoleta.infraestructure.persistence.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "categoriasDePlatos")
+@Table(name = "categorias")
 public class CatergoriaEntity {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
