@@ -5,7 +5,7 @@ import com.pragma.powerup.plazoleta.infraestructure.persistence.entity.PlatoEnti
 
 public interface PlatoPersistencePort {
 
-    public void guardarPlato(Plato plato);
+    public Plato guardarPlato(Plato plato);
     public Plato buscarPlatoById(Long idPlato);
     public void guardarCambiosPlato(Plato platoModificado);
 }

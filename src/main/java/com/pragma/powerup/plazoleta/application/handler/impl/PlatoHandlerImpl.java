@@ -1,14 +1,11 @@
 package com.pragma.powerup.plazoleta.application.handler.impl;
 
-import com.pragma.powerup.plazoleta.application.dto.CambioPlatoRequestDto;
-import com.pragma.powerup.plazoleta.application.dto.PlatoRequestDto;
+import com.pragma.powerup.plazoleta.application.dto.request.PlatoRequestDto;
+import com.pragma.powerup.plazoleta.application.dto.response.PlatoResponseDto;
 import com.pragma.powerup.plazoleta.application.handler.PlatoHandler;
 import com.pragma.powerup.plazoleta.application.mapper.PlatoMapper;
-import com.pragma.powerup.plazoleta.domain.api.CategoriaServicePort;
 import com.pragma.powerup.plazoleta.domain.api.PlatoServicePort;
-import com.pragma.powerup.plazoleta.domain.api.RestauranteServicePort;
 import com.pragma.powerup.plazoleta.domain.model.Plato;
-import com.pragma.powerup.plazoleta.domain.spi.CategoriaPersistencePort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,31 +13,30 @@ public class PlatoHandlerImpl implements PlatoHandler {
 
     private PlatoMapper platoMapper;
     private PlatoServicePort platoServicePort;
-    private RestauranteServicePort restauranteServicePort;
-    private CategoriaServicePort categoriaServicePort;
 
-    public PlatoHandlerImpl(PlatoMapper platoMapper, PlatoServicePort platoServicePort, RestauranteServicePort restauranteServicePort, CategoriaServicePort categoriaServicePort) {
+
+    public PlatoHandlerImpl(PlatoMapper platoMapper, PlatoServicePort platoServicePort) {
         this.platoMapper = platoMapper;
         this.platoServicePort = platoServicePort;
-        this.restauranteServicePort = restauranteServicePort;
-        this.categoriaServicePort = categoriaServicePort;
     }
 
     @Override
-    public void crearPlato(PlatoRequestDto platoNuevo) {
-        restauranteServicePort.validarSiExisteRestaurante(platoNuevo.getIdRestaurante());
-        categoriaServicePort.validarCategoriaExiste(platoNuevo.getIdCategoria());
-
-        Plato plato = platoMapper.platoRequestDtoToPlato(platoNuevo);
-        platoServicePort.crearPlato(plato);
+    public PlatoResponseDto crearPlato(PlatoRequestDto platoRequestDto) {
+        //Mapeo plato requestDto a un plato
+        Plato plato = platoMapper.platoRequestDtoToPlato(platoRequestDto);
+        //llevo el plato a través del puerto de servicio
+        Plato platoNuevo = platoServicePort.crearPlato(plato);
+        PlatoResponseDto platoResponseDto = platoMapper.platoToPlatoResponsetDto(platoNuevo);
+        return platoResponseDto;
     }
 
     @Override
-    public void modificarPlato(CambioPlatoRequestDto platoModificar) {
-        Plato plato = platoServicePort.obtenerPlatoPorId(platoModificar.getIdPlato());
-        plato.setDescripcion(platoModificar.getDescripcion());
-        plato.setPrecio(Long.parseLong(platoModificar.getPrecio()));
-        platoServicePort.modificarPlato(plato);
+    public PlatoResponseDto modificarPlato(PlatoRequestDto platoRequestDto) {
+        //Validar si el plato existe
+        Plato plato = platoMapper.platoRequestDtoToPlato(platoRequestDto);
+        Plato platoModificado = platoServicePort.modificarPlato(plato);
+        PlatoResponseDto platoResponseDto = platoMapper.platoToPlatoResponsetDto(platoModificado);
+        return platoResponseDto;
     }
 
     @Override

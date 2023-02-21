@@ -1,7 +1,7 @@
 package com.pragma.powerup.plazoleta.infraestructure.persistence.adapter;
 
 import com.pragma.powerup.plazoleta.domain.spi.CategoriaPersistencePort;
-import com.pragma.powerup.plazoleta.infraestructure.exception.NoDataFoundException;
+import com.pragma.powerup.plazoleta.domain.exception.PlazoletaNoDataFoundException;
 import com.pragma.powerup.plazoleta.infraestructure.persistence.entity.CatergoriaEntity;
 import com.pragma.powerup.plazoleta.infraestructure.persistence.mapper.CategoriaEntityMapper;
 import com.pragma.powerup.plazoleta.infraestructure.persistence.repository.CategoriaRepository;
@@ -19,12 +19,12 @@ public class CategoriaPersistenceAdapter implements CategoriaPersistencePort {
     }
 
     @Override
-    public boolean validarSiCategoriaExiste(Long idCategoria) throws NoDataFoundException {
+    public boolean validarSiCategoriaExiste(Long idCategoria) throws PlazoletaNoDataFoundException {
 
         Optional<CatergoriaEntity> categoria = categoriaRepository.findById(idCategoria);
         if (categoria.isPresent()) {
             return true;
         }
-        throw new NoDataFoundException("El idCategoria " + idCategoria + " no existe.");
+        throw new PlazoletaNoDataFoundException("El idCategoria " + idCategoria + " no existe.");
     }
 }

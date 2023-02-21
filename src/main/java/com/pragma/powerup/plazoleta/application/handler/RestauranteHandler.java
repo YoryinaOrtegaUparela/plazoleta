@@ -1,8 +1,9 @@
 package com.pragma.powerup.plazoleta.application.handler;
 
-import com.pragma.powerup.plazoleta.application.dto.RestauranteRequestDto;
+import com.pragma.powerup.plazoleta.application.dto.request.RestauranteRequestDto;
+import com.pragma.powerup.plazoleta.application.dto.response.RestauranteResponseDto;
 
 public interface RestauranteHandler {
 
-    public void crearRestaurante(RestauranteRequestDto restauranteNuevo);
+    public RestauranteResponseDto crearRestaurante(RestauranteRequestDto restauranteNuevo);
 }

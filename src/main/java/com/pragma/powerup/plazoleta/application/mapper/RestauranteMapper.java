@@ -1,6 +1,7 @@
 package com.pragma.powerup.plazoleta.application.mapper;
 
-import com.pragma.powerup.plazoleta.application.dto.RestauranteRequestDto;
+import com.pragma.powerup.plazoleta.application.dto.request.RestauranteRequestDto;
+import com.pragma.powerup.plazoleta.application.dto.response.RestauranteResponseDto;
 import com.pragma.powerup.plazoleta.domain.model.Restaurante;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -12,4 +13,5 @@ import org.mapstruct.ReportingPolicy;
 public interface RestauranteMapper {
 
     public Restaurante restauranteDtoToRestaurante(RestauranteRequestDto restauranteRequestDto);
+    public RestauranteResponseDto restauranteToRestauranteResponseDto(Restaurante restaurante);
 }

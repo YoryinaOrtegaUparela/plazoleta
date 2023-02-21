@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(value = "usuario", url = "http://localhost:8081/api/v1/usuario/validarRolUsuario")
+@FeignClient(value = "usuario", url = "http://localhost:8081/api/v1/usuario")
 public interface UsuarioRemoteClient {
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{usuarioId}", produces = "application/json")
+    @RequestMapping(method = RequestMethod.GET, value = "/validarRolUsuario/{usuarioId}", produces = "application/json")
     UsuarioRemoteResponseDto validarRolUsuario(@PathVariable("usuarioId") Long postId);
 }
