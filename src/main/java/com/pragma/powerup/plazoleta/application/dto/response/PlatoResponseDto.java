@@ -7,6 +7,8 @@ public class PlatoResponseDto {
     private String descripcion;
     private String precio;
     private Long idRestaurante;
+    private boolean activo;
+
 
     public String getNombre() {
         return nombre;
@@ -46,5 +48,13 @@ public class PlatoResponseDto {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }

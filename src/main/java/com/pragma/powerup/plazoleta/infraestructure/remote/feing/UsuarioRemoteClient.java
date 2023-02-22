@@ -1,6 +1,6 @@
 package com.pragma.powerup.plazoleta.infraestructure.remote.feing;
 
-import com.pragma.powerup.plazoleta.application.dto.UsuarioRemoteResponseDto;
+import com.pragma.powerup.plazoleta.application.dto.response.UsuarioRemoteResponseDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -7,6 +7,6 @@ public interface PlatoHandler {
 
     public PlatoResponseDto crearPlato(PlatoRequestDto platoNuevo);
     public PlatoResponseDto modificarPlato(PlatoRequestDto platoRequestDto);
-    public void desactivarPlato(boolean desactivar);
-    public void activarPlato(boolean activo);
+    public PlatoResponseDto activarDesactivarPlato(PlatoRequestDto platoRequestDto);
+
 }

@@ -3,6 +3,7 @@ package com.pragma.powerup.plazoleta.domain.useCase;
 import com.pragma.powerup.plazoleta.domain.api.CategoriaServicePort;
 import com.pragma.powerup.plazoleta.domain.api.PlatoServicePort;
 import com.pragma.powerup.plazoleta.domain.api.RestauranteServicePort;
+import com.pragma.powerup.plazoleta.domain.exception.PlazoletaNoDataFoundException;
 import com.pragma.powerup.plazoleta.domain.helper.PlatoDataValidator;
 import com.pragma.powerup.plazoleta.domain.model.Plato;
 import com.pragma.powerup.plazoleta.domain.spi.PlatoPersistencePort;
@@ -44,6 +45,23 @@ public class PlatoUseCase implements PlatoServicePort {
         Plato plato = obtenerPlatoPorId(platoModificado.getId());
         plato.setPrecio(platoModificado.getPrecio());
         plato.setDescripcion(platoModificado.getDescripcion());
+        platoPersistencePort.guardarCambiosPlato(plato);
+        return plato;
+    }
+
+    @Override
+    public Plato activarDesactivarPlato(Plato platoActualizado) {
+        Plato plato = obtenerPlatoPorId(platoActualizado.getId());
+
+        if (platoActualizado.getIdRestaurante() == plato.getIdRestaurante()) {
+            if (plato.isActivo()) {
+                plato.setActivo(false);
+            } else {
+                plato.setActivo(true);
+            }
+        } else{
+            throw new PlazoletaNoDataFoundException("El plato suministrado, no pertenece al restaurante indicado");
+        }
         platoPersistencePort.guardarCambiosPlato(plato);
         return plato;
     }

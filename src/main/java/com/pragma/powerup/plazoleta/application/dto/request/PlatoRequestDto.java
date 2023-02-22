@@ -15,6 +15,7 @@ public class PlatoRequestDto {
     private String precio;
     private String urlImagen;
     private Long idRestaurante;
+    private boolean activo;
 
     public Long getId() {
         return id;
@@ -70,5 +71,13 @@ public class PlatoRequestDto {
 
     public void setIdRestaurante(Long idRestaurante) {
         this.idRestaurante = idRestaurante;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }

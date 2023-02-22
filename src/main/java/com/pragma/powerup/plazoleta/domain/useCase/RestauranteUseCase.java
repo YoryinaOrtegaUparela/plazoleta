@@ -2,7 +2,7 @@ package com.pragma.powerup.plazoleta.domain.useCase;
 
 import com.pragma.powerup.plazoleta.domain.exception.PlazoletaNoDataFoundException;
 import com.pragma.powerup.plazoleta.domain.helper.RestauranteDataValidator;
-import com.pragma.powerup.plazoleta.application.dto.UsuarioRemoteResponseDto;
+import com.pragma.powerup.plazoleta.application.dto.response.UsuarioRemoteResponseDto;
 import com.pragma.powerup.plazoleta.domain.exception.OperationNotAllowedException;
 import com.pragma.powerup.plazoleta.domain.model.Restaurante;
 import com.pragma.powerup.plazoleta.domain.api.RestauranteServicePort;
@@ -12,9 +12,7 @@ import com.pragma.powerup.plazoleta.domain.spi.UsuarioRemotePort;
 public class RestauranteUseCase implements RestauranteServicePort {
 
     private static final String ROL_PROPIETARIO = "PROPIETARIO";
-
     private RestaurantePersistencePort restaurantePersistencePort;
-
     private UsuarioRemotePort usuarioRemotePort;
 
     public RestauranteUseCase(RestaurantePersistencePort restaurantePersistencePort, UsuarioRemotePort usuarioRemotePort) {

@@ -8,4 +8,6 @@ public interface PlatoServicePort {
     public Plato obtenerPlatoPorId(Long idPlato);
     public Plato modificarPlato(Plato platoModificado);
 
+    public Plato activarDesactivarPlato(Plato plato);
+
 }

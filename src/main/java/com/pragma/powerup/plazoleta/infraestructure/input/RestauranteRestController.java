@@ -24,7 +24,7 @@ public class RestauranteRestController {
     @ResponseStatus(code = HttpStatus.CREATED)
     @PostMapping("/crearRestaurante")
     public ResponseEntity<RestauranteResponseDto> crearRestaurante
-            ( @RequestBody RestauranteRequestDto restauranteRequestDto){
+            (@RequestBody RestauranteRequestDto restauranteRequestDto){
         RestauranteResponseDto restauranteResponseDto = restauranteHandler.crearRestaurante(restauranteRequestDto);
 
         return new ResponseEntity<RestauranteResponseDto>(restauranteResponseDto,HttpStatus.CREATED);

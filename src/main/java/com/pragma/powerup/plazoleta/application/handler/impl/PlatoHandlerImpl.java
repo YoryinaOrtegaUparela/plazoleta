@@ -32,7 +32,6 @@ public class PlatoHandlerImpl implements PlatoHandler {
 
     @Override
     public PlatoResponseDto modificarPlato(PlatoRequestDto platoRequestDto) {
-        //Validar si el plato existe
         Plato plato = platoMapper.platoRequestDtoToPlato(platoRequestDto);
         Plato platoModificado = platoServicePort.modificarPlato(plato);
         PlatoResponseDto platoResponseDto = platoMapper.platoToPlatoResponsetDto(platoModificado);
@@ -40,12 +39,12 @@ public class PlatoHandlerImpl implements PlatoHandler {
     }
 
     @Override
-    public void desactivarPlato(boolean desactivar) {
-
+    public PlatoResponseDto activarDesactivarPlato(PlatoRequestDto platoRequestDto) {
+        Plato plato = platoMapper.platoRequestDtoToPlato(platoRequestDto);
+        Plato platoActualizado = platoServicePort.activarDesactivarPlato(plato);
+        PlatoResponseDto platoResponseDto = platoMapper.platoToPlatoResponsetDto(platoActualizado);
+        return platoResponseDto;
     }
 
-    @Override
-    public void activarPlato(boolean activo) {
 
-    }
 }

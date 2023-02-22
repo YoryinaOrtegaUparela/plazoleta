@@ -1,5 +1,6 @@
 package com.pragma.powerup.plazoleta.infraestructure.exception;
 
+import com.pragma.powerup.plazoleta.domain.exception.OperationNotAllowedException;
 import com.pragma.powerup.plazoleta.domain.exception.PlazoletaNoDataFoundException;
 import com.pragma.powerup.plazoleta.domain.exception.PlazoletaValidationRequestException;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,18 @@ public class ControllerAdvisor {
         stringStringMap.put(STATUS_CODE, HttpStatus.NOT_FOUND.getReasonPhrase());
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(stringStringMap);
+    }
+
+    @ExceptionHandler(OperationNotAllowedException.class)
+    public ResponseEntity<Map<String, String>> handleOperationNotAllowedException(
+            OperationNotAllowedException operationNotAllowedException) {
+
+        Map<String, String> stringStringMap = new HashMap<String, String>();
+        stringStringMap.put(ERROR, operationNotAllowedException.getMessage());
+        stringStringMap.put(STATUS_CODE, HttpStatus.BAD_REQUEST.getReasonPhrase());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(stringStringMap);
     }
 }

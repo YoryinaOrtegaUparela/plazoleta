@@ -1,6 +1,6 @@
 package com.pragma.powerup.plazoleta.infraestructure.remote;
 
-import com.pragma.powerup.plazoleta.application.dto.UsuarioRemoteResponseDto;
+import com.pragma.powerup.plazoleta.application.dto.response.UsuarioRemoteResponseDto;
 import com.pragma.powerup.plazoleta.domain.spi.UsuarioRemotePort;
 import com.pragma.powerup.plazoleta.infraestructure.remote.feing.UsuarioRemoteClient;
 

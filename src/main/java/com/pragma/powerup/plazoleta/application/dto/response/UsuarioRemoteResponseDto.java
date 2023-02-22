@@ -1,4 +1,4 @@
-package com.pragma.powerup.plazoleta.application.dto;
+package com.pragma.powerup.plazoleta.application.dto.response;
 
 public class UsuarioRemoteResponseDto {
 

@@ -39,4 +39,14 @@ public class PlatoRestController {
         return new ResponseEntity<PlatoResponseDto>(platoResponseDto, HttpStatus.OK);
     }
 
+    @Operation(description = "Permite activar/desactivar platos en el menú \n" +
+            "para dejar de ofrecer el producto en el menú")
+    @ResponseStatus(code = HttpStatus.OK)
+    @PatchMapping("/habilitarDeshabilitarPlato")
+    public ResponseEntity<PlatoResponseDto> habilitarDeshabilitarPlato
+            ( @RequestBody PlatoRequestDto platoRequestDto){
+            PlatoResponseDto platoResponseDto = platoHandler.activarDesactivarPlato(platoRequestDto);
+        return new ResponseEntity<PlatoResponseDto>(platoResponseDto, HttpStatus.OK);
+    }
+
 }
