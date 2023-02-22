@@ -4,6 +4,6 @@ import com.pragma.powerup.plazoleta.domain.model.Restaurante;
 
 public interface RestauranteServicePort {
 
-    public Restaurante crearRestaurante(Restaurante restauranteNuevo);
+    public Restaurante crearRestaurante(Restaurante restaurante);
     public void validarSiExisteRestaurante(Long idRestaurante);
 }

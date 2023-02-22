@@ -1,7 +1,7 @@
 package com.pragma.powerup.plazoleta.domain.helper;
 
-import com.pragma.powerup.plazoleta.domain.exception.PlazoletaNoDataFoundException;
-import com.pragma.powerup.plazoleta.domain.exception.PlazoletaValidationRequestException;
+import com.pragma.powerup.plazoleta.domain.exception.InformacionNoEncontradaException;
+import com.pragma.powerup.plazoleta.domain.exception.ValidationRequestException;
 import com.pragma.powerup.plazoleta.domain.model.Plato;
 
 import java.util.regex.Matcher;
@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 /**
  * Realizar verificaciones de los atributos de los platos
  */
-public class PlatoDataValidator {
+public class ValidadorDataDePlato {
 
     public static Plato validarDataParaCrearPlato(Plato plato) {
         validarDataObligatoria(plato);
@@ -32,17 +32,17 @@ public class PlatoDataValidator {
 
     private static void validarDataObligatoria(Plato plato) {
         if (isNull(plato.getNombre())) {
-            throw new PlazoletaNoDataFoundException("El atributo nombre es obligatorio");
+            throw new InformacionNoEncontradaException("El atributo nombre es obligatorio");
         } else if (isNull(plato.getIdCategoria())) {
-            throw new PlazoletaNoDataFoundException("El atributo idCategoria es obligatorio");
+            throw new InformacionNoEncontradaException("El atributo idCategoria es obligatorio");
         } else if (isNull(plato.getDescripcion())) {
-            throw new PlazoletaNoDataFoundException("El atributo descripcion es obligatorio");
+            throw new InformacionNoEncontradaException("El atributo descripcion es obligatorio");
         } else if (isNull(plato.getPrecio())) {
-            throw new PlazoletaNoDataFoundException("El atributo precio es obligatorio");
+            throw new InformacionNoEncontradaException("El atributo precio es obligatorio");
         } else if (isNull(plato.getUrlImagen())) {
-            throw new PlazoletaNoDataFoundException("El atributo urlImagen es obligatorio");
+            throw new InformacionNoEncontradaException("El atributo urlImagen es obligatorio");
         } else if (isNull(plato.getIdRestaurante())) {
-            throw new PlazoletaNoDataFoundException("El atributo idRestaurante es obligatorio");
+            throw new InformacionNoEncontradaException("El atributo idRestaurante es obligatorio");
         }
     }
 
@@ -63,7 +63,7 @@ public class PlatoDataValidator {
                 .compile("^\\d+$");
         Matcher mather = pattern.matcher(precio);
         if (!mather.find()) {
-            throw new PlazoletaValidationRequestException("El atributo precio debe ser un entero positivo");
+            throw new ValidationRequestException("El atributo precio debe ser un entero positivo");
         }
     }
 
@@ -75,7 +75,7 @@ public class PlatoDataValidator {
     private static void precioEsMayorQueCero(String precio) {
         Long precioLong = Long.parseLong(precio);
         if (precioLong > 0) {
-            throw new PlazoletaValidationRequestException("El atributo precio debe ser mayor a 0");
+            throw new ValidationRequestException("El atributo precio debe ser mayor a 0");
         }
     }
 
@@ -91,11 +91,11 @@ public class PlatoDataValidator {
 
     private static void validarDataObligatoriaParaModificar(Plato plato) {
         if (isNull(plato.getId())) {
-            throw new PlazoletaNoDataFoundException("El atributo idPlato es obligatorio");
+            throw new InformacionNoEncontradaException("El atributo idPlato es obligatorio");
         } else if (isNull(plato.getDescripcion())) {
-            throw new PlazoletaNoDataFoundException("El atributo descripcion es obligatorio");
+            throw new InformacionNoEncontradaException("El atributo descripcion es obligatorio");
         } else if (isNull(plato.getPrecio())) {
-            throw new PlazoletaNoDataFoundException("El atributo precio es obligatorio");
+            throw new InformacionNoEncontradaException("El atributo precio es obligatorio");
         }
     }
 

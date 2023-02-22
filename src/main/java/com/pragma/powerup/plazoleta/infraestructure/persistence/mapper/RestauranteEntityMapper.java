@@ -17,5 +17,5 @@ public interface RestauranteEntityMapper {
      * @return RestauranteEntity
      */
 
-    public RestauranteEntity restauranteToRestauranteEntity(Restaurante restaurante);
+    public RestauranteEntity convertirRestauranteARestauranteEntity(Restaurante restaurante);
 }

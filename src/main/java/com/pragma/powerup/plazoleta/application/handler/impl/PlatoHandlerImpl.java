@@ -23,26 +23,26 @@ public class PlatoHandlerImpl implements PlatoHandler {
     @Override
     public PlatoResponseDto crearPlato(PlatoRequestDto platoRequestDto) {
         //Mapeo plato requestDto a un plato
-        Plato plato = platoMapper.platoRequestDtoToPlato(platoRequestDto);
+        Plato plato = platoMapper.convertirPlatoRequestDtoAPlato(platoRequestDto);
         //llevo el plato a través del puerto de servicio
-        Plato platoNuevo = platoServicePort.crearPlato(plato);
-        PlatoResponseDto platoResponseDto = platoMapper.platoToPlatoResponsetDto(platoNuevo);
+        Plato platoGuardado = platoServicePort.crearPlato(plato);
+        PlatoResponseDto platoResponseDto = platoMapper.convertirPlatoAPlatoResponsetDto(platoGuardado);
         return platoResponseDto;
     }
 
     @Override
     public PlatoResponseDto modificarPlato(PlatoRequestDto platoRequestDto) {
-        Plato plato = platoMapper.platoRequestDtoToPlato(platoRequestDto);
+        Plato plato = platoMapper.convertirPlatoRequestDtoAPlato(platoRequestDto);
         Plato platoModificado = platoServicePort.modificarPlato(plato);
-        PlatoResponseDto platoResponseDto = platoMapper.platoToPlatoResponsetDto(platoModificado);
+        PlatoResponseDto platoResponseDto = platoMapper.convertirPlatoAPlatoResponsetDto(platoModificado);
         return platoResponseDto;
     }
 
     @Override
-    public PlatoResponseDto activarDesactivarPlato(PlatoRequestDto platoRequestDto) {
-        Plato plato = platoMapper.platoRequestDtoToPlato(platoRequestDto);
-        Plato platoActualizado = platoServicePort.activarDesactivarPlato(plato);
-        PlatoResponseDto platoResponseDto = platoMapper.platoToPlatoResponsetDto(platoActualizado);
+    public PlatoResponseDto activarODesactivarPlato(PlatoRequestDto platoRequestDto) {
+        Plato plato = platoMapper.convertirPlatoRequestDtoAPlato(platoRequestDto);
+        Plato platoActualizado = platoServicePort.activarODesactivarPlato(plato);
+        PlatoResponseDto platoResponseDto = platoMapper.convertirPlatoAPlatoResponsetDto(platoActualizado);
         return platoResponseDto;
     }
 

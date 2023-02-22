@@ -11,6 +11,6 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface PlatoEntityMapper {
 
-    public PlatoEntity platoToPlatoEntityMapper(Plato Plato);
-    public Plato platoEntityMapperToPlato(PlatoEntity platoEntity);
+    public PlatoEntity convertirPlatoAPlatoEntity(Plato Plato);
+    public Plato convertirPlatoEntityAPlato(PlatoEntity platoEntity);
 }

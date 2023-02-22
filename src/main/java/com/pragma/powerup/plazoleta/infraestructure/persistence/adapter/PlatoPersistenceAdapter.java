@@ -19,8 +19,8 @@ public class PlatoPersistenceAdapter implements PlatoPersistencePort {
     }
 
     @Override
-    public Plato guardarPlato(Plato plato) {
-        PlatoEntity platoEntity = platoEntityMapper.platoToPlatoEntityMapper(plato);
+    public Plato crearPlato(Plato plato) {
+        PlatoEntity platoEntity = platoEntityMapper.convertirPlatoAPlatoEntity(plato);
         PlatoEntity platoGuardado = platoRepository.save(platoEntity);
 
         plato.setId(platoGuardado.getId());
@@ -28,15 +28,15 @@ public class PlatoPersistenceAdapter implements PlatoPersistencePort {
     }
 
     @Override
-    public Plato buscarPlatoById(Long idPlato) {
+    public Plato obtenerPlatoPorId(Long idPlato) {
         Optional<PlatoEntity> platoEntityModificar = platoRepository.findById(idPlato);
-        Plato platoModificar = platoEntityMapper.platoEntityMapperToPlato(platoEntityModificar.get());
+        Plato platoModificar = platoEntityMapper.convertirPlatoEntityAPlato(platoEntityModificar.get());
         return platoModificar;
     }
 
     @Override
-    public void guardarCambiosPlato(Plato platoModificado) {
-        PlatoEntity platoEntity = platoEntityMapper.platoToPlatoEntityMapper(platoModificado);
+    public void modificarPlato(Plato platoModificado) {
+        PlatoEntity platoEntity = platoEntityMapper.convertirPlatoAPlatoEntity(platoModificado);
         platoRepository.save(platoEntity);
 
     }

@@ -5,5 +5,5 @@ import com.pragma.powerup.plazoleta.application.dto.response.RestauranteResponse
 
 public interface RestauranteHandler {
 
-    public RestauranteResponseDto crearRestaurante(RestauranteRequestDto restauranteNuevo);
+    public RestauranteResponseDto crearRestaurante(RestauranteRequestDto restauranteRequestDto);
 }

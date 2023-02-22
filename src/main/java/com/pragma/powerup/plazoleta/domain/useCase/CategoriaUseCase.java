@@ -13,7 +13,7 @@ public class CategoriaUseCase implements CategoriaServicePort {
 
 
     @Override
-    public boolean validarCategoriaExiste(Long idCategoria) {
+    public boolean validarSiCategoriaExiste(Long idCategoria) {
         return categoriaPersistencePort.validarSiCategoriaExiste(idCategoria);
     }
 }

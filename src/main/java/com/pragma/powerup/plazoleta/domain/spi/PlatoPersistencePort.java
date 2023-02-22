@@ -1,11 +1,10 @@
 package com.pragma.powerup.plazoleta.domain.spi;
 
 import com.pragma.powerup.plazoleta.domain.model.Plato;
-import com.pragma.powerup.plazoleta.infraestructure.persistence.entity.PlatoEntity;
 
 public interface PlatoPersistencePort {
 
-    public Plato guardarPlato(Plato plato);
-    public Plato buscarPlatoById(Long idPlato);
-    public void guardarCambiosPlato(Plato platoModificado);
+    public Plato crearPlato(Plato plato);
+    public Plato obtenerPlatoPorId(Long idPlato);
+    public void modificarPlato(Plato platoModificado);
 }

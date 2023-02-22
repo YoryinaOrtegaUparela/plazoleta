@@ -12,6 +12,6 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface RestauranteMapper {
 
-    public Restaurante restauranteDtoToRestaurante(RestauranteRequestDto restauranteRequestDto);
-    public RestauranteResponseDto restauranteToRestauranteResponseDto(Restaurante restaurante);
+    public Restaurante convertirRestauranteDtoARestaurante(RestauranteRequestDto restauranteRequestDto);
+    public RestauranteResponseDto convertirRestauranteARestauranteResponseDto(Restaurante restaurante);
 }

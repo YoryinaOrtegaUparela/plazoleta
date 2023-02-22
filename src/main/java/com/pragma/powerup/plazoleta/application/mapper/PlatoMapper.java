@@ -12,7 +12,6 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface PlatoMapper {
 
-    public Plato platoRequestDtoToPlato(PlatoRequestDto platoRequestDto);
-    public PlatoResponseDto platoToPlatoResponsetDto(Plato plato);
-    public PlatoRequestDto platoToPlatoRequestDto(Plato plato);
+    public Plato convertirPlatoRequestDtoAPlato(PlatoRequestDto platoRequestDto);
+    public PlatoResponseDto convertirPlatoAPlatoResponsetDto(Plato plato);
 }

@@ -1,12 +1,6 @@
 package com.pragma.powerup.plazoleta.application.dto.request;
 
 
-import com.pragma.powerup.plazoleta.domain.exception.PlazoletaValidationRequestException;
-
-import javax.validation.constraints.NotNull;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class RestauranteRequestDto {
     private String nombre;
     private String nit;

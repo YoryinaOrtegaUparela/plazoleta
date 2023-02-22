@@ -11,5 +11,5 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface CategoriaEntityMapper {
 
-    public CatergoriaEntity categoriaToCategoriaEntity(Categoria categoria);
+    public CatergoriaEntity convertirCategoriaACategoriaEntity(Categoria categoria);
 }

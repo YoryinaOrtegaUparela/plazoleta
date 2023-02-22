@@ -21,9 +21,9 @@ public class RestauranteHandlerImpl implements RestauranteHandler {
 
     @Override
     public RestauranteResponseDto crearRestaurante(RestauranteRequestDto restauranteRequestDto) {
-        Restaurante restaurante = restauranteMapper.restauranteDtoToRestaurante(restauranteRequestDto);
+        Restaurante restaurante = restauranteMapper.convertirRestauranteDtoARestaurante(restauranteRequestDto);
         Restaurante restauranteCreado = restauranteServicePort.crearRestaurante(restaurante);
-        RestauranteResponseDto restauranteResponseDto = restauranteMapper.restauranteToRestauranteResponseDto(restauranteCreado);
+        RestauranteResponseDto restauranteResponseDto = restauranteMapper.convertirRestauranteARestauranteResponseDto(restauranteCreado);
         return restauranteResponseDto;
     }
 }

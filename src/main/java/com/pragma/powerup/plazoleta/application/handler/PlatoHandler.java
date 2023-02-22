@@ -5,8 +5,8 @@ import com.pragma.powerup.plazoleta.application.dto.response.PlatoResponseDto;
 
 public interface PlatoHandler {
 
-    public PlatoResponseDto crearPlato(PlatoRequestDto platoNuevo);
+    public PlatoResponseDto crearPlato(PlatoRequestDto platoRequestDto);
     public PlatoResponseDto modificarPlato(PlatoRequestDto platoRequestDto);
-    public PlatoResponseDto activarDesactivarPlato(PlatoRequestDto platoRequestDto);
+    public PlatoResponseDto activarODesactivarPlato(PlatoRequestDto platoRequestDto);
 
 }

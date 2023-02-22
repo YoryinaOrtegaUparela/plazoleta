@@ -1,16 +1,12 @@
 package com.pragma.powerup.plazoleta.infraestructure.input;
 
 import com.pragma.powerup.plazoleta.application.dto.request.PlatoRequestDto;
-import com.pragma.powerup.plazoleta.application.dto.request.RestauranteRequestDto;
 import com.pragma.powerup.plazoleta.application.dto.response.PlatoResponseDto;
 import com.pragma.powerup.plazoleta.application.handler.PlatoHandler;
-import com.pragma.powerup.plazoleta.application.handler.RestauranteHandler;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/plazoleta/plato")
@@ -43,9 +39,9 @@ public class PlatoRestController {
             "para dejar de ofrecer el producto en el menú")
     @ResponseStatus(code = HttpStatus.OK)
     @PatchMapping("/habilitarDeshabilitarPlato")
-    public ResponseEntity<PlatoResponseDto> habilitarDeshabilitarPlato
+    public ResponseEntity<PlatoResponseDto> habilitarODeshabilitarPlato
             ( @RequestBody PlatoRequestDto platoRequestDto){
-            PlatoResponseDto platoResponseDto = platoHandler.activarDesactivarPlato(platoRequestDto);
+            PlatoResponseDto platoResponseDto = platoHandler.activarODesactivarPlato(platoRequestDto);
         return new ResponseEntity<PlatoResponseDto>(platoResponseDto, HttpStatus.OK);
     }
 

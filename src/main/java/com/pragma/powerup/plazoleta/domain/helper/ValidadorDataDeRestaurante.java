@@ -1,15 +1,15 @@
 package com.pragma.powerup.plazoleta.domain.helper;
 
-import com.pragma.powerup.plazoleta.domain.exception.PlazoletaNoDataFoundException;
-import com.pragma.powerup.plazoleta.domain.exception.PlazoletaValidationRequestException;
+import com.pragma.powerup.plazoleta.domain.exception.InformacionNoEncontradaException;
+import com.pragma.powerup.plazoleta.domain.exception.ValidationRequestException;
 import com.pragma.powerup.plazoleta.domain.model.Restaurante;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RestauranteDataValidator {
+public class ValidadorDataDeRestaurante {
 
-    public static Restaurante validarRestaurante(Restaurante restaurante) {
+    public static Restaurante validarDataParaCreareRestaurante(Restaurante restaurante) {
         validarDataObligatoria(restaurante);
         validarEstructuraData(restaurante);
         return restaurante;
@@ -22,17 +22,17 @@ public class RestauranteDataValidator {
      */
     private static void validarDataObligatoria(Restaurante restaurante) {
         if (isNull(restaurante.getNombre())) {
-            throw new PlazoletaNoDataFoundException("El atributo nombre es obligatorio");
+            throw new InformacionNoEncontradaException("El atributo nombre es obligatorio");
         } else if (isNull(restaurante.getNit())) {
-            throw new PlazoletaNoDataFoundException("El atributo nit es obligatorio");
+            throw new InformacionNoEncontradaException("El atributo nit es obligatorio");
         } else if (isNull(restaurante.getDireccion())) {
-            throw new PlazoletaNoDataFoundException("El atributo direccion es obligatorio");
+            throw new InformacionNoEncontradaException("El atributo direccion es obligatorio");
         } else if (isNull(restaurante.getIdPropietario())) {
-            throw new PlazoletaNoDataFoundException("El atributo idPropietario es obligatorio");
+            throw new InformacionNoEncontradaException("El atributo idPropietario es obligatorio");
         } else if (isNull(restaurante.getTelefono())) {
-            throw new PlazoletaNoDataFoundException("El atributo telefono es obligatorio");
+            throw new InformacionNoEncontradaException("El atributo telefono es obligatorio");
         } else if (isNull(restaurante.getUrlLogo())) {
-            throw new PlazoletaNoDataFoundException("El atributo urlLogo es obligatorio");
+            throw new InformacionNoEncontradaException("El atributo urlLogo es obligatorio");
         }
     }
 
@@ -59,7 +59,7 @@ public class RestauranteDataValidator {
                 .compile("^[a-zA-Z0-9]*[a-zA-Z][a-zA-Z0-9]*$");
         Matcher mather = pattern.matcher(nombre);
         if (!mather.find()) {
-            throw new PlazoletaValidationRequestException("El atributo nombre debe contener letras de la A-Z y puede " +
+            throw new ValidationRequestException("El atributo nombre debe contener letras de la A-Z y puede " +
                     "contener números, pero no se permiten nombres con sólo números.");
         }
     }
@@ -74,7 +74,7 @@ public class RestauranteDataValidator {
                 .compile("^\\d+$");
         Matcher mather = pattern.matcher(nit);
         if (!mather.find()) {
-            throw new PlazoletaValidationRequestException("El atributo nit debe ser numerico");
+            throw new ValidationRequestException("El atributo nit debe ser numerico");
         }
     }
 
@@ -95,7 +95,7 @@ public class RestauranteDataValidator {
 
     private static void tamanoTelefonoEsCorrecto(String telefono) {
         if (telefono.length() > 13) {
-            throw new PlazoletaValidationRequestException("El número de caracteres del atributo telefono es mayor a 13");
+            throw new ValidationRequestException("El número de caracteres del atributo telefono es mayor a 13");
         }
     }
 
@@ -108,7 +108,7 @@ public class RestauranteDataValidator {
                 .compile("^\\+?\\d+$");
         Matcher mather = pattern.matcher(telefono);
         if (!mather.find()) {
-            throw new PlazoletaValidationRequestException("El atributo telefono debe ser numerico y puede iniciar con +");
+            throw new ValidationRequestException("El atributo telefono debe ser numerico y puede iniciar con +");
         }
     }
 }
