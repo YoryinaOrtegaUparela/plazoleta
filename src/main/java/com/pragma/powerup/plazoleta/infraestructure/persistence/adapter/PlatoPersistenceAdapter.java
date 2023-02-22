@@ -1,5 +1,6 @@
 package com.pragma.powerup.plazoleta.infraestructure.persistence.adapter;
 
+import com.pragma.powerup.plazoleta.domain.exception.InformacionNoEncontradaException;
 import com.pragma.powerup.plazoleta.domain.model.Plato;
 import com.pragma.powerup.plazoleta.domain.spi.PlatoPersistencePort;
 import com.pragma.powerup.plazoleta.infraestructure.persistence.entity.PlatoEntity;
@@ -28,8 +29,11 @@ public class PlatoPersistenceAdapter implements PlatoPersistencePort {
     }
 
     @Override
-    public Plato obtenerPlatoPorId(Long idPlato) {
+    public Plato obtenerPlatoPorId(Long idPlato) throws InformacionNoEncontradaException{
         Optional<PlatoEntity> platoEntityModificar = platoRepository.findById(idPlato);
+        if(!platoEntityModificar.isPresent()){
+            throw new InformacionNoEncontradaException("El plato suministrado no existe");
+        }
         Plato platoModificar = platoEntityMapper.convertirPlatoEntityAPlato(platoEntityModificar.get());
         return platoModificar;
     }

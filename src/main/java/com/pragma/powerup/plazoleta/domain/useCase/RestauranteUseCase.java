@@ -38,10 +38,7 @@ public class RestauranteUseCase implements RestauranteServicePort {
     }
 
     @Override
-    public void validarSiExisteRestaurante(Long idRestaurante) {
-        boolean restauranteExiste = restaurantePersistencePort.validarSiRestauranteExiste(idRestaurante);
-        if (!restauranteExiste) {
-            throw new InformacionNoEncontradaException("El idRestaurante " + idRestaurante + " no existe.");
-        }
+    public boolean validarSiExisteRestaurante(Long idRestaurante) {
+        return restaurantePersistencePort.validarSiRestauranteExiste(idRestaurante);
     }
 }

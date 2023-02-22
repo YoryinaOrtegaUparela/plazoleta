@@ -35,8 +35,5 @@ public class RestaurantePersistenceAdapter implements RestaurantePersistencePort
         }else{
             return false;
         }
-
-
-
     }
 }

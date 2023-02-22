@@ -22,17 +22,26 @@ public class PlatoUseCase implements PlatoServicePort {
 
     @Override
     public Plato crearPlato(Plato plato) {
-        //Validar que el restaurante donde se quiere agregar el plato exista
-        restauranteServicePort.validarSiExisteRestaurante(plato.getIdRestaurante());
-        //Validar si la categoria donde se quiere agregar el plato exista
-        categoriaServicePort.validarSiCategoriaExiste(plato.getIdCategoria());
 
+        ValidadorDataDePlato.validarDataParaCrearPlato(plato);
+
+        //Validar que el restaurante donde se quiere agregar el plato exista
+        boolean restauranteExiste = restauranteServicePort.validarSiExisteRestaurante(plato.getIdRestaurante());
+        if (!restauranteExiste) {
+            throw new InformacionNoEncontradaException("El idRestaurante " + plato.getIdRestaurante()
+                    + " no existe.");
+        }
+        //Validar si la categoria donde se quiere agregar el plato exista
+        boolean categoriaExiste = categoriaServicePort.validarSiCategoriaExiste(plato.getIdCategoria());
+        if (!categoriaExiste) {
+            throw new InformacionNoEncontradaException("El idCategoria " + plato.getIdCategoria() + " no existe.");
+        }
         Plato platoCreado = platoPersistencePort.crearPlato(plato);
         return platoCreado;
     }
 
     @Override
-    public Plato obtenerPlatoPorId(Long idPlato) {
+    public Plato obtenerPlatoPorId(Long idPlato) throws InformacionNoEncontradaException {
         Plato platoEncontrado = platoPersistencePort.obtenerPlatoPorId(idPlato);
         return platoEncontrado;
     }
@@ -41,6 +50,7 @@ public class PlatoUseCase implements PlatoServicePort {
     public Plato modificarPlato(Plato plato) {
         ValidadorDataDePlato.validarDataParaModificarPlato(plato);
         //Se verifica que el plato exista hy se recuperan todos los atributos para evitar error de referencia
+
         Plato platoModificado = obtenerPlatoPorId(plato.getId());
         platoModificado.setPrecio(plato.getPrecio());
         platoModificado.setDescripcion(plato.getDescripcion());
@@ -52,15 +62,11 @@ public class PlatoUseCase implements PlatoServicePort {
     public Plato activarODesactivarPlato(Plato plato) {
         Plato platoActivoODesactivo = obtenerPlatoPorId(plato.getId());
 
-        if (plato.getIdRestaurante() == platoActivoODesactivo.getIdRestaurante()) {
-            if (platoActivoODesactivo.isActivo()) {
+           if (platoActivoODesactivo.isActivo()) {
                 platoActivoODesactivo.setActivo(false);
             } else {
                 platoActivoODesactivo.setActivo(true);
             }
-        } else{
-            throw new InformacionNoEncontradaException("El plato suministrado, no pertenece al restaurante indicado");
-        }
         platoPersistencePort.modificarPlato(platoActivoODesactivo);
         return platoActivoODesactivo;
     }

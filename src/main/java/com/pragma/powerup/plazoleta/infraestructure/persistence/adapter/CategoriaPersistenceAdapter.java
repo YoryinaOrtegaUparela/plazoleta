@@ -24,7 +24,8 @@ public class CategoriaPersistenceAdapter implements CategoriaPersistencePort {
         Optional<CatergoriaEntity> categoria = categoriaRepository.findById(idCategoria);
         if (categoria.isPresent()) {
             return true;
+        } else {
+            return false;
         }
-        throw new InformacionNoEncontradaException("El idCategoria " + idCategoria + " no existe.");
     }
 }

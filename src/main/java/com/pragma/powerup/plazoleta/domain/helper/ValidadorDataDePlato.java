@@ -14,12 +14,13 @@ public class ValidadorDataDePlato {
 
     public static Plato validarDataParaCrearPlato(Plato plato) {
         validarDataObligatoria(plato);
-        precioEsValido(String.valueOf(plato.getPrecio()));
+        precioEsValido(plato.getPrecio());
         return plato;
     }
 
     public static Plato validarDataParaModificarPlato(Plato plato) {
         validarDataObligatoriaParaModificar(plato);
+        precioEsValido(plato.getPrecio());
         return plato;
     }
 
@@ -74,7 +75,7 @@ public class ValidadorDataDePlato {
      */
     private static void precioEsMayorQueCero(String precio) {
         Long precioLong = Long.parseLong(precio);
-        if (precioLong > 0) {
+        if (precioLong <= 0) {
             throw new ValidationRequestException("El atributo precio debe ser mayor a 0");
         }
     }
