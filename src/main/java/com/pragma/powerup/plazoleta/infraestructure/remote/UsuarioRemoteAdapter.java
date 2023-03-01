@@ -1,5 +1,6 @@
 package com.pragma.powerup.plazoleta.infraestructure.remote;
 
+import com.pragma.powerup.plazoleta.application.dto.request.UsuarioRemoteRequestDto;
 import com.pragma.powerup.plazoleta.application.dto.response.UsuarioRemoteResponseDto;
 import com.pragma.powerup.plazoleta.domain.spi.UsuarioRemotePort;
 import com.pragma.powerup.plazoleta.infraestructure.remote.feing.UsuarioRemoteClient;
@@ -15,5 +16,10 @@ public class UsuarioRemoteAdapter implements UsuarioRemotePort {
     @Override
     public UsuarioRemoteResponseDto validarRolUsuario(Long idUsuario) {
         return usuarioRemoteClient.validarRolUsuario(idUsuario);
+    }
+
+    @Override
+    public UsuarioRemoteResponseDto validarUsuarioPorCorreo(UsuarioRemoteRequestDto usuarioRemoteRequestDto) {
+        return usuarioRemoteClient.validarUsuarioPorCorreo(usuarioRemoteRequestDto);
     }
 }

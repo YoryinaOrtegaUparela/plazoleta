@@ -1,5 +1,7 @@
 package com.pragma.powerup.plazoleta.domain.useCase;
 
+import com.pragma.powerup.plazoleta.application.dto.request.RestauranteRequestDto;
+import com.pragma.powerup.plazoleta.application.dto.response.ListaRestaurantesResponseDto;
 import com.pragma.powerup.plazoleta.domain.exception.InformacionNoEncontradaException;
 import com.pragma.powerup.plazoleta.domain.helper.ValidadorDataDeRestaurante;
 import com.pragma.powerup.plazoleta.application.dto.response.UsuarioRemoteResponseDto;
@@ -8,6 +10,8 @@ import com.pragma.powerup.plazoleta.domain.model.Restaurante;
 import com.pragma.powerup.plazoleta.domain.api.RestauranteServicePort;
 import com.pragma.powerup.plazoleta.domain.spi.RestaurantePersistencePort;
 import com.pragma.powerup.plazoleta.domain.spi.UsuarioRemotePort;
+
+import java.util.List;
 
 public class RestauranteUseCase implements RestauranteServicePort {
 
@@ -34,11 +38,16 @@ public class RestauranteUseCase implements RestauranteServicePort {
 
         Restaurante restauranteCreado = restaurantePersistencePort.crearRestaurante(restaurante);
         return restauranteCreado;
-
     }
 
     @Override
     public boolean validarSiExisteRestaurante(Long idRestaurante) {
         return restaurantePersistencePort.validarSiRestauranteExiste(idRestaurante);
+    }
+
+    @Override
+    public List<Restaurante> listarRestaurantes(RestauranteRequestDto restauranteRequestDto) {
+        List<Restaurante> listaRestaurantes = restaurantePersistencePort.listarRestaurantes(restauranteRequestDto);
+        return listaRestaurantes;
     }
 }

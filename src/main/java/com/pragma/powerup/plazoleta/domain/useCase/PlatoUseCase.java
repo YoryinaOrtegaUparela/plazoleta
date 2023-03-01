@@ -5,8 +5,12 @@ import com.pragma.powerup.plazoleta.domain.api.PlatoServicePort;
 import com.pragma.powerup.plazoleta.domain.api.RestauranteServicePort;
 import com.pragma.powerup.plazoleta.domain.exception.InformacionNoEncontradaException;
 import com.pragma.powerup.plazoleta.domain.helper.ValidadorDataDePlato;
+import com.pragma.powerup.plazoleta.domain.model.Menu;
 import com.pragma.powerup.plazoleta.domain.model.Plato;
+import com.pragma.powerup.plazoleta.domain.model.SeccionMenu;
 import com.pragma.powerup.plazoleta.domain.spi.PlatoPersistencePort;
+
+import java.util.List;
 
 public class PlatoUseCase implements PlatoServicePort {
 
@@ -69,5 +73,10 @@ public class PlatoUseCase implements PlatoServicePort {
             }
         platoPersistencePort.modificarPlato(platoActivoODesactivo);
         return platoActivoODesactivo;
+    }
+
+    @Override
+    public List<SeccionMenu> obtenerMenu(Menu menu) {
+        return platoPersistencePort.obtenerSeccionMenu(menu);
     }
 }

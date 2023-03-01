@@ -2,6 +2,18 @@ package com.pragma.powerup.plazoleta.infraestructure.persistence.entity;
 
 import javax.persistence.*;
 
+@NamedNativeQuery(name = "PlatoEntity.platosConCategoria",
+        query = "SELECT  p.nombre,p.descripcion, p.precio,c.nombre as nombreCategoria FROM platos p " +
+        " inner join categorias c on p.id_categoria=c.id " +
+        " wHERE id_restaurante=?1 " +
+        " order by c.nombre",resultSetMapping = "PlatoConCategoria")
+
+@SqlResultSetMapping(name = "PlatoConCategoria",
+        classes = @ConstructorResult(targetClass = PlatoConCategoria.class,
+        columns = {@ColumnResult(name = "nombre"),
+                @ColumnResult(name = "descripcion"),
+                @ColumnResult(name = "precio"),
+                @ColumnResult(name = "nombreCategoria")}))
 @Entity
 @Table(name = "platos")
 public class PlatoEntity {

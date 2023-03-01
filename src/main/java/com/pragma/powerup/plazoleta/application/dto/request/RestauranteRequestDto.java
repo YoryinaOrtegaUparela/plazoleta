@@ -8,6 +8,9 @@ public class RestauranteRequestDto {
     private Long idPropietario;
     private String telefono;
     private String urlLogo;
+    private Long numeroRegistros;
+    private Long pagina;
+
 
     public String getNombre() {
         return nombre;
@@ -55,5 +58,21 @@ public class RestauranteRequestDto {
 
     public void setUrlLogo(String urlLogo) {
         this.urlLogo = urlLogo;
+    }
+
+    public Long getNumeroRegistros() {
+        return numeroRegistros;
+    }
+
+    public void setNumeroRegistros(Long numeroRegistros) {
+        this.numeroRegistros = numeroRegistros;
+    }
+
+    public Long getPagina() {
+        return pagina;
+    }
+
+    public void setPagina(Long pagina) {
+        this.pagina = pagina;
     }
 }

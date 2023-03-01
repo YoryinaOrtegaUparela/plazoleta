@@ -42,7 +42,6 @@ public class PlatoRequestDto {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
     public String getPrecio() {
         return precio;
     }
@@ -50,7 +49,6 @@ public class PlatoRequestDto {
     public void setPrecio(String precio) {
         this.precio = precio;
     }
-
     public String getUrlImagen() {
         return urlImagen;
     }
@@ -66,7 +64,6 @@ public class PlatoRequestDto {
     public void setIdRestaurante(Long idRestaurante) {
         this.idRestaurante = idRestaurante;
     }
-
     public boolean isActivo() {
         return activo;
     }

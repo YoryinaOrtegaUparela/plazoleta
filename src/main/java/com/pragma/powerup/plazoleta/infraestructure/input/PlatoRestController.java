@@ -1,6 +1,8 @@
 package com.pragma.powerup.plazoleta.infraestructure.input;
 
+import com.pragma.powerup.plazoleta.application.dto.request.MenuRequestDto;
 import com.pragma.powerup.plazoleta.application.dto.request.PlatoRequestDto;
+import com.pragma.powerup.plazoleta.application.dto.response.MenuResponseDto;
 import com.pragma.powerup.plazoleta.application.dto.response.PlatoResponseDto;
 import com.pragma.powerup.plazoleta.application.handler.PlatoHandler;
 import io.swagger.v3.oas.annotations.Operation;
@@ -20,7 +22,7 @@ public class PlatoRestController {
 
     @Operation(description = "Permitir la Creacion de un plato dentro del sistema")
     @ResponseStatus(code = HttpStatus.CREATED)
-    @PostMapping("/crearPlato")
+    @PostMapping("/creaPlato")
     public ResponseEntity<PlatoResponseDto> crearPlato( @RequestBody PlatoRequestDto platoRequestDto){
         PlatoResponseDto platoResponseDto = platoHandler.crearPlato(platoRequestDto);
         return new ResponseEntity<PlatoResponseDto>(platoResponseDto, HttpStatus.CREATED);
@@ -28,7 +30,7 @@ public class PlatoRestController {
 
     @Operation(description = "Permite modificar parcialmente un plato dentro del sistema")
     @ResponseStatus(code = HttpStatus.OK)
-    @PatchMapping("/modificarPlato")
+    @PatchMapping("/modificaPlato")
     public ResponseEntity<PlatoResponseDto> modificarPlato
             ( @RequestBody PlatoRequestDto platoRequestDto){
         PlatoResponseDto platoResponseDto = platoHandler.modificarPlato(platoRequestDto);
@@ -38,11 +40,21 @@ public class PlatoRestController {
     @Operation(description = "Permite activar/desactivar platos en el menú \n" +
             "para dejar de ofrecer el producto en el menú")
     @ResponseStatus(code = HttpStatus.OK)
-    @PatchMapping("/habilitarDeshabilitarPlato")
+    @PatchMapping("/estadoPlato")
     public ResponseEntity<PlatoResponseDto> habilitarODeshabilitarPlato
             ( @RequestBody PlatoRequestDto platoRequestDto){
             PlatoResponseDto platoResponseDto = platoHandler.activarODesactivarPlato(platoRequestDto);
         return new ResponseEntity<PlatoResponseDto>(platoResponseDto, HttpStatus.OK);
+    }
+
+    @Operation(description = "Permitir al cliente listar el menú (platos agrepados por categorias) " +
+            "de cada restaurante al que da clic.")
+    @ResponseStatus(code = HttpStatus.OK)
+    @GetMapping("/menu")
+    public ResponseEntity<MenuResponseDto> menu( @RequestBody MenuRequestDto menuRequestDto){
+      MenuResponseDto menuResponseDto = platoHandler.obtenerMenu(menuRequestDto);
+
+        return new ResponseEntity<MenuResponseDto>(menuResponseDto, HttpStatus.OK);
     }
 
 }

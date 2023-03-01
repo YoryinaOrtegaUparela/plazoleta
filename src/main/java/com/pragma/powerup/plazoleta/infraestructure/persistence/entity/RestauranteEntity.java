@@ -8,7 +8,6 @@ public class RestauranteEntity {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(nullable = false)
     private Long id;
 
     @Column(length = 50)

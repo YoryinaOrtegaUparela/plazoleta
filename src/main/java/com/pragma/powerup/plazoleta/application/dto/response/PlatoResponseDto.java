@@ -1,5 +1,8 @@
 package com.pragma.powerup.plazoleta.application.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL )
 public class PlatoResponseDto {
 
     private String nombre;
@@ -7,7 +10,7 @@ public class PlatoResponseDto {
     private String descripcion;
     private String precio;
     private Long idRestaurante;
-    private boolean activo;
+    private Boolean activo;
 
 
     public String getNombre() {
@@ -50,11 +53,11 @@ public class PlatoResponseDto {
         this.descripcion = descripcion;
     }
 
-    public boolean isActivo() {
+    public Boolean getActivo() {
         return activo;
     }
 
-    public void setActivo(boolean activo) {
+    public void setActivo(Boolean activo) {
         this.activo = activo;
     }
 }

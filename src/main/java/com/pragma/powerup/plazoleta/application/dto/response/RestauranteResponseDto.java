@@ -3,8 +3,8 @@ package com.pragma.powerup.plazoleta.application.dto.response;
 public class RestauranteResponseDto {
 
     private String nombre;
-    private String nit;
-    private Long idPropietario;
+    private String urlLogo;
+
 
     public String getNombre() {
         return nombre;
@@ -14,19 +14,12 @@ public class RestauranteResponseDto {
         this.nombre = nombre;
     }
 
-    public String getNit() {
-        return nit;
+    public String getUrlLogo() {
+        return urlLogo;
     }
 
-    public void setNit(String nit) {
-        this.nit = nit;
+    public void setUrlLogo(String urlLogo) {
+        this.urlLogo = urlLogo;
     }
 
-    public Long getIdPropietario() {
-        return idPropietario;
-    }
-
-    public void setIdPropietario(Long idPropietario) {
-        this.idPropietario = idPropietario;
-    }
 }
