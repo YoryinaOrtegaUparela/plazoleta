@@ -1,24 +1,19 @@
-package com.pragma.powerup.plazoleta.domain.model;
+package com.pragma.powerup.plazoleta.application.dto.response;
+
+import com.pragma.powerup.plazoleta.domain.model.Orden;
 
 import java.util.List;
 
-public class Pedido {
+public class PedidoResponseDto {
 
-    private Long id;
     private Long idRestaurante;
     private List<Orden> orden;
     private String estado;
     private Long idCliente;
-    private String fecha;
 
-
-    public Long getId() {
-        return id;
+    public PedidoResponseDto() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getIdRestaurante() {
         return idRestaurante;
@@ -50,13 +45,5 @@ public class Pedido {
 
     public void setIdCliente(Long idCliente) {
         this.idCliente = idCliente;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
     }
 }

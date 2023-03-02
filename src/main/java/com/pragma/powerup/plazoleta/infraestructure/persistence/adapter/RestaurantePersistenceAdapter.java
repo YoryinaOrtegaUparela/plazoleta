@@ -1,6 +1,7 @@
 package com.pragma.powerup.plazoleta.infraestructure.persistence.adapter;
 
 import com.pragma.powerup.plazoleta.application.dto.request.RestauranteRequestDto;
+import com.pragma.powerup.plazoleta.domain.model.Pedido;
 import com.pragma.powerup.plazoleta.domain.model.Restaurante;
 import com.pragma.powerup.plazoleta.domain.spi.RestaurantePersistencePort;
 import com.pragma.powerup.plazoleta.domain.exception.InformacionNoEncontradaException;

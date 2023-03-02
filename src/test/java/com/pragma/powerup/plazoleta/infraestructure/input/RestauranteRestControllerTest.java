@@ -1,6 +1,9 @@
 package com.pragma.powerup.plazoleta.infraestructure.input;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pragma.powerup.plazoleta.application.dto.request.OrdenDto;
+import com.pragma.powerup.plazoleta.application.dto.request.PedidoRequestDto;
 import com.pragma.powerup.plazoleta.application.dto.request.RestauranteRequestDto;
 import com.pragma.powerup.plazoleta.application.dto.response.ListaRestaurantesResponseDto;
 import com.pragma.powerup.plazoleta.application.dto.response.RestauranteResponseDto;
@@ -65,5 +68,14 @@ class RestauranteRestControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString(response)));
+    }
+
+    @Test
+    void menu() throws JsonProcessingException {
+        OrdenDto ordenDto = new OrdenDto();
+
+        String response = objectMapper.writeValueAsString(ordenDto);
+        System.out.println(response);
+
     }
 }

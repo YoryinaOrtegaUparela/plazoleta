@@ -1,19 +1,16 @@
 package com.pragma.powerup.plazoleta.infraestructure.persistence.adapter;
 
 import com.pragma.powerup.plazoleta.domain.exception.InformacionNoEncontradaException;
-import com.pragma.powerup.plazoleta.domain.model.Categoria;
 import com.pragma.powerup.plazoleta.domain.model.Menu;
 import com.pragma.powerup.plazoleta.domain.model.Plato;
 import com.pragma.powerup.plazoleta.domain.model.SeccionMenu;
 import com.pragma.powerup.plazoleta.domain.spi.PlatoPersistencePort;
-import com.pragma.powerup.plazoleta.infraestructure.persistence.entity.IPlatoConCategoria;
 import com.pragma.powerup.plazoleta.infraestructure.persistence.entity.PlatoConCategoria;
 import com.pragma.powerup.plazoleta.infraestructure.persistence.entity.PlatoEntity;
 import com.pragma.powerup.plazoleta.infraestructure.persistence.mapper.PlatoEntityMapper;
 import com.pragma.powerup.plazoleta.infraestructure.persistence.repository.PlatoRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 import java.util.ArrayList;
 import java.util.List;

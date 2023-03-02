@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(value = "usuario", url = "http://localhost:8081/api/v1/usuario")
 public interface UsuarioRemoteClient {
 
-    @RequestMapping(method = RequestMethod.GET, value = "/validarRolUsuario/{usuarioId}", produces = "application/json")
+    @RequestMapping(method = RequestMethod.GET, value = "/validaRolUsuario/{usuarioId}", produces = "application/json")
     UsuarioRemoteResponseDto validarRolUsuario(@PathVariable("usuarioId") Long postId);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/validarUsuarioPorCorreo", produces = "application/json")
+    @RequestMapping(method = RequestMethod.GET, value = "/validaUsuarioPorCorreo", produces = "application/json")
     UsuarioRemoteResponseDto validarUsuarioPorCorreo(@RequestBody UsuarioRemoteRequestDto usuarioRemoteRequestDto);
 
 }

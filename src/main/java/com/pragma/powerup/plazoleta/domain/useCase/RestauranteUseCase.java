@@ -6,6 +6,7 @@ import com.pragma.powerup.plazoleta.domain.exception.InformacionNoEncontradaExce
 import com.pragma.powerup.plazoleta.domain.helper.ValidadorDataDeRestaurante;
 import com.pragma.powerup.plazoleta.application.dto.response.UsuarioRemoteResponseDto;
 import com.pragma.powerup.plazoleta.domain.exception.OperacionNoPermitidaException;
+import com.pragma.powerup.plazoleta.domain.model.Pedido;
 import com.pragma.powerup.plazoleta.domain.model.Restaurante;
 import com.pragma.powerup.plazoleta.domain.api.RestauranteServicePort;
 import com.pragma.powerup.plazoleta.domain.spi.RestaurantePersistencePort;
@@ -50,4 +51,5 @@ public class RestauranteUseCase implements RestauranteServicePort {
         List<Restaurante> listaRestaurantes = restaurantePersistencePort.listarRestaurantes(restauranteRequestDto);
         return listaRestaurantes;
     }
+
 }

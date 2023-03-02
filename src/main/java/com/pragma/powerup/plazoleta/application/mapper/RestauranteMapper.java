@@ -1,8 +1,11 @@
 package com.pragma.powerup.plazoleta.application.mapper;
 
+import com.pragma.powerup.plazoleta.application.dto.request.PedidoRequestDto;
 import com.pragma.powerup.plazoleta.application.dto.request.RestauranteRequestDto;
 import com.pragma.powerup.plazoleta.application.dto.response.ListaRestaurantesResponseDto;
+import com.pragma.powerup.plazoleta.application.dto.response.PedidoResponseDto;
 import com.pragma.powerup.plazoleta.application.dto.response.RestauranteResponseDto;
+import com.pragma.powerup.plazoleta.domain.model.Pedido;
 import com.pragma.powerup.plazoleta.domain.model.Restaurante;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -19,4 +22,8 @@ public interface RestauranteMapper {
     public RestauranteResponseDto convertirRestauranteARestauranteResponseDto(Restaurante restaurante);
 
     public List<RestauranteResponseDto> convertirListaRestaurantesAListaRestaurantesResponseDto(List<Restaurante> listaRestaurantes);
+
+    Pedido convertirPedidoRequestDtoAPedido(PedidoRequestDto pedidoRequestDto);
+
+    PedidoResponseDto convertirPedidoAPedidoResponseDto(Pedido pedido);
 }
